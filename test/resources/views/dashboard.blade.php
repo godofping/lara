@@ -1,6 +1,11 @@
 @extends('layouts.layout')
 
 @section('title','Dashboard')
+
+@section('extendedcss')
+    
+@endsection
+
 @section('page', 'Dashboard')
 
 @section('breadcrumps')
@@ -14,5 +19,25 @@
 @endsection
 
 @section('content')
-    <h1>dashboard page</h1>
+<!-- ============================================================== -->
+<!-- Start Page Content -->
+<!-- ============================================================== -->
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                    <h1>users</h1>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- ============================================================== -->
+<!-- End PAge Content -->
+<!-- ============================================================== -->
+    
+@endsection
+
+
+@section('extendedjs')
+    
 @endsection

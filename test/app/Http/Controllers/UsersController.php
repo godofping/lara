@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Student;
 use Illuminate\Http\Request;
+use App\User;
 
-class StudentsController extends Controller
+class UsersController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +14,8 @@ class StudentsController extends Controller
      */
     public function index()
     {
-        //
+        $users = User::all();
+        return view('users/index',compact('users'));
     }
 
     /**
@@ -24,7 +25,7 @@ class StudentsController extends Controller
      */
     public function create()
     {
-        //
+        return view('users/create');
     }
 
     /**
@@ -35,51 +36,60 @@ class StudentsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        User::create(request()->validate([
+            'name'=>['required','min:3'],
+            'username'=>['required','min:3'],
+            'password'=>['required','min:3'],
+            'address'=>['required','min:3'],
+        ]));
+
+        return redirect('/users');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Student  $student
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Student $student)
+    public function show(User $user)
     {
-        //
+        return view('users.show', compact('user'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Student  $student
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Student $student)
+    public function edit(User $user)
     {
-        //
+        return view('users.edit',compact('user'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Student  $student
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Student $student)
+    public function update(User $user)
     {
-        //
+        $user->update(request(['name','username','address','password']));
+        return redirect('/users');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Student  $student
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Student $student)
+    public function destroy(User $user)
     {
-        //
+        $user->delete();
+        return redirect('/users');
     }
 }
