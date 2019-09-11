@@ -63,13 +63,11 @@
                                 <td>{{ $user->created_at }}</td>
                                 <td>{{ $user->updated_at }}</td>
                                 <td>
-                                    <a href="/users/{{ $user->id }}/edit"><button type="button" class="btn btn-info btn-circle"><i class="fa fa-pencil"></i></button> </a>
-                                    <form action="/users/{{ $user->id }}" method="POST">
-                                        @method('DELETE')
-                                        @csrf
-                                        <button type="submit" class="btn btn-danger btn-circle"><i class="fa fa-close"></i></button>
+                                    <form action="/users/{{ $user->id }}" method="POST"> @method('DELETE') @csrf
+                                    <a href="/users/{{ $user->id }}/edit"><button type="button" class="btn btn-primary btn-circle"><i class="fa fa-pencil"></i></button></a>
+                                    <button type="submit" class="btn btn-danger btn-circle"><i class="fa fa-close"></i></button>
+                                    <a href="/users/{{ $user->id }}"><button type="button" class="btn btn-warning btn-circle"><i class="fa fa-eye"></i></button></a>
                                     </form>
-                                    <a href="/users/{{ $user->id }}"><button type="button" class="btn btn-warning btn-circle"><i class="fa fa-eye"></i></button> </a>
                                 </td>
                             </tr>
                             @endforeach
